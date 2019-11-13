@@ -48,15 +48,4 @@ RUN mkdir -p $APP_HOME && \
   gem update --system && \
   gem install bundler --no-document && gem install rake --no-document
 WORKDIR $APP_HOME
-
-########################################
-# Application / Install gems
-########################################
 COPY . $APP_HOME
-
-ENV BUNDLE_PATH="vendor/cache"
-
-RUN set -ex && bundle check || bundle install --jobs $(nproc) --retry=3 --quiet
-# Install and compile the applications assets
-RUN yarn check || yarn install --frozen-lockfile; \
-  yarn cache clean
