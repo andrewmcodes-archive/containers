@@ -1,9 +1,8 @@
 FROM node:13-slim as node
 FROM ruby:2.6.5-slim
 
-LABEL "repository"="https://github.com/andrewmcodes/standardrb-action"
+LABEL "repository"="https://github.com/andrewmcodes/containers"
 LABEL "maintainer"="Andrew Mason <andrewmcodes@protonmail.com>"
-LABEL "version"="0.0.2"
 
 ########################################
 # Set Environment variables
@@ -54,8 +53,6 @@ WORKDIR $APP_HOME
 # Application / Install gems
 ########################################
 COPY . $APP_HOME
-RUN chown -R $APP_USER:$APP_USER $APP_HOME && \
-  chmod -R 777 /app/bin
 
 ENV BUNDLE_PATH="vendor/cache"
 
